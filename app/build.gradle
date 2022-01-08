@@ -46,4 +46,6 @@ dependencies {
 
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
 
+    implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.30.0'
+
 }

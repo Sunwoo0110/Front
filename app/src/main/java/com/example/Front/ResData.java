@@ -1,4 +1,4 @@
-package com.example.Front.Res;
+package com.example.Front;
 
 public class ResData {
     public int img;

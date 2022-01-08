@@ -1,4 +1,4 @@
-package com.example.Front.Res;
+package com.example.Front;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
-import com.example.Front.R;
 
 public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHolder> {
 
@@ -53,6 +51,7 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
             }
         });
          */
+
     }
 
     @Override

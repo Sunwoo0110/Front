@@ -9,5 +9,5 @@
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".Res.ReviewFragment"
+    tools:context=".ReviewFragment"
     tools:listitem="@layout/item_review" />
