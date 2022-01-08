@@ -3,32 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_kakao_login">
+    app:startDestination="@+id/navigation_main">
 
     <activity
-        android:id="@+id/navigation_kakao_login"
-        android:name="com.example.Front.MainActivity"
-        android:label="@string/title_kakao_login"
+        android:id="@+id/navigation_main"
+        android:name="com.example.Front.Login.MainActivity"
+        android:label="@string/title_activity_main"
         tools:layout="@layout/activity_main" />
 
     <fragment
-        android:id="@+id/navigation_res_info_list"
+        android:id="@+id/navigation_res_info"
         android:name="com.example.Front.Res.ResInfoFragment"
         android:label="@string/title_res_info"
         tools:layout="@layout/fragment_res_info_list" >
         <action
-            android:id="@+id/action_navigation_res_info_list_to_navigation_review_list"
-            app:destination="@id/navigation_review_list" />
+            android:id="@+id/action_navigation_res_info_to_navigation_review"
+            app:destination="@id/navigation_review" />
     </fragment>
 
     <fragment
-        android:id="@id/navigation_review_list"
+        android:id="@id/navigation_review"
         android:name="com.example.Front.Res.ReviewFragment"
         android:label="@string/title_review"
         tools:layout="@layout/fragment_review">
         <action
-            android:id="@+id/action_navigation_review_list_to_navigation_res_info_list"
-            app:destination="@id/navigation_res_info_list" />
+            android:id="@+id/action_navigation_review_to_navigation_res_info"
+            app:destination="@id/navigation_res_info" />
     </fragment>
 
 </navigation>

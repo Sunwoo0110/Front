@@ -21,7 +21,7 @@ public class ResInfoFragment extends Fragment {
     private RecyclerView reRecyclerView;
     private ResInfoAdapter reAdapter;
     private RecyclerView.LayoutManager reLayoutManager;
-    private ResData[] reResData;
+    private ArrayList<ResData> reResData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

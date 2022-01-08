@@ -1,4 +1,4 @@
-package com.example.Front;
+package com.example.Front.Login;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.Front.Login.CallbackFunction;
+import com.example.Front.R;
+import com.example.Front.Res.ResActivity;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
 import com.kakao.network.ErrorResult;
@@ -23,10 +26,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
-    private Button login, logout;
+    private ImageButton login;
+    private Button logout;
     private CallbackFunction sessionCallback = new CallbackFunction();
     Session session;
     private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +48,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: 로그인 세션살아있음");
                 // 카카오 로그인 시도 (창이 안뜬다.)
                 sessionCallback.requestMe();
+
             } else {
                 Log.d(TAG, "onClick: 로그인 세션끝남");
                 // 카카오 로그인 시도 (창이 뜬다.)
-                session.open(AuthType.KAKAO_LOGIN_ALL, MainActivity.this);
+                session.open(AuthType.KAKAO_LOGIN_ALL, com.example.Front.Login.MainActivity.this);
             }
+            /*
+            Intent intent = new Intent(getApplicationContext(), ResActivity.class);
+            startActivity(intent);
+
+             */
         });
 
         logout.setOnClickListener(v -> {
@@ -57,9 +68,10 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onSessionClosed(ErrorResult errorResult) {
                             super.onSessionClosed(errorResult);
-                            Log.d(TAG, "onSessionClosed: "+errorResult.getErrorMessage());
+                            Log.d(TAG, "onSessionClosed: " + errorResult.getErrorMessage());
 
                         }
+
                         @Override
                         public void onCompleteLogout() {
                             if (sessionCallback != null) {
@@ -71,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 카카오 개발자 홈페이지에 등록할 해시키 구하기
-//        getHashKey();
+       //getHashKey();
     }
 
 
@@ -94,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void getHashKey(){
+    private void getHashKey() {
         PackageInfo packageInfo = null;
         try {
             packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -114,5 +126,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }

@@ -17,9 +17,9 @@ import com.example.Front.R;
 public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHolder> {
 
     @NonNull
-    private ResData[] mDataset;
+    private ArrayList<ResData> mDataset;
 
-    public ResInfoAdapter(ResData[] searchDataSet, Activity activity){
+    public ResInfoAdapter(ArrayList<ResData> searchDataSet, Activity activity){
         mDataset = searchDataSet;
     }
 
@@ -40,11 +40,11 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
         public TextView ResLikeView;
 
          */
-        holder.ResImgView.setImageResource(mDataset[position].img);
-        holder.ResNameView.setText(mDataset[position].name);
-        holder.ResPlaceView.setText(mDataset[position].place);
-        holder.ResTimeView.setText(mDataset[position].time);
-        holder.ResLikeView.setText(mDataset[position].like);
+        holder.ResImgView.setImageResource(mDataset.get(position).img);
+        holder.ResNameView.setText(mDataset.get(position).name);
+        holder.ResPlaceView.setText(mDataset.get(position).place);
+        holder.ResTimeView.setText(mDataset.get(position).time);
+        holder.ResLikeView.setText(mDataset.get(position).like);
         /*
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +57,7 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

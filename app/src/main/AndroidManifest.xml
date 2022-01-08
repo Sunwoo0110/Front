@@ -2,19 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.Front">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name="com.example.Front.Login.KakaoApplication"
+        android:name=".Login.KakaoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Kakaologin">
+        android:theme="@style/Theme.Front.NoActionBar">
+        <activity
+            android:name=".Res.ResActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-        <activity android:name="com.example.Front.MainActivity">
+
+        <activity android:name=".Login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
