@@ -36,9 +36,10 @@ public class ResInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         //Log.d("TEST", getJsonString());
-        //jsonParsing(getJsonString());
+        jsonParsing(getJsonString());
 
         // test
+        /*
         ResData resData = new ResData();
 
         resData.setName("카이마루");
@@ -46,6 +47,8 @@ public class ResInfoFragment extends Fragment {
         resData.setTime("몰랑");
         resData.setLike(2);
         reResData.add(resData);
+
+         */
 
 
         View view = inflater.inflate(R.layout.fragment_res_info_list, container, false);
@@ -75,8 +78,7 @@ public class ResInfoFragment extends Fragment {
     {
         String json = "";
         try {
-            AssetManager am = getResources().getAssets();
-            InputStream is = am.open("resList.json");
+            InputStream is = getActivity().getResources().getAssets().open("resList.json");
             Log.d("test!!!!!!", "test1");
             int fileSize = is.available();
 
@@ -88,6 +90,7 @@ public class ResInfoFragment extends Fragment {
 
         } catch (IOException ex){
             ex.printStackTrace();
+            return null;
         }
 
         return json;
@@ -98,7 +101,7 @@ public class ResInfoFragment extends Fragment {
         try {
             JSONObject jsonObject = new JSONObject(json);
 
-            JSONArray resArray = jsonObject.getJSONArray("resList.json");
+            JSONArray resArray = jsonObject.getJSONArray("resList");
 
             for(int i=0; i<resArray.length(); ++i){
                 JSONObject resObject = resArray.getJSONObject(i);

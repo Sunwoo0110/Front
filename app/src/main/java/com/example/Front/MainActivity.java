@@ -83,13 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 session.open(AuthType.KAKAO_LOGIN_ALL, MainActivity.this);
             }
 
-            /*
-            Intent intent = new Intent(getApplicationContext(), ResActivity.class);
-            startActivity(intent);
-            finish();
-
-             */
-
        });
 
         logout.setOnClickListener(v -> {
@@ -291,6 +284,10 @@ public class MainActivity extends AppCompatActivity {
                                         //Toast.makeText(getApplicationContext(), "Response Fail", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+
+                                Intent intent = new Intent(getApplicationContext(), ResActivity.class);
+                                startActivity(intent);
+                                finish();
                             } catch (JSONException ex){
 
                             }
