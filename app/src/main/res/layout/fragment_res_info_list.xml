@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/res_list"
-    android:name="com.example.Front.ResInfo.ResInfoFragment"
+    android:name="com.example.Front.ResInfoFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".Res.ResInfoFragment"
+    tools:context=".ResInfoFragment"
     tools:listitem="@layout/item_res_info" />

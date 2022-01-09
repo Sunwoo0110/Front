@@ -2,17 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_kakao_login"
-        android:enabled="true"
-        android:title="@string/title_kakao_login" />
-
-    <item
-        android:id="@+id/navigation_res_info_list"
+        android:id="@+id/navigation_res_info"
         android:enabled="true"
         android:title="@string/title_res_info" />
 
     <item
-        android:id="@+id/navigation_review_list"
+        android:id="@+id/navigation_review"
         android:enabled="true"
         android:title="@string/title_review" />
 

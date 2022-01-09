@@ -1,4 +1,4 @@
-package com.example.Front.Login;
+package com.example.Front;
 
 import android.app.Application;
 
