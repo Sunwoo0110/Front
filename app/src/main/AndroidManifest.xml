@@ -11,7 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Front.NoActionBar">
+        android:theme="@style/Theme.Front.NoActionBar"
+        android:usesCleartextTraffic="true">
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -19,7 +20,7 @@
 
         <activity
             android:name=".ResActivity"
-            android:exported="false" />
+            android:exported="true" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

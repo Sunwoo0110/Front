@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +36,14 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+
 public class MainActivity extends AppCompatActivity {
     private ImageButton login;
     private Button logout;
@@ -40,10 +51,19 @@ public class MainActivity extends AppCompatActivity {
     Session session;
     private static final String TAG = "MainActivity";
 
+    private final String URL = "http://172.10.18.160:80";
+
+    private Retrofit retrofit;
+    private ApiService service;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getHashKey();
+
+        firstInit();
 
         login = findViewById(R.id.login);
         logout = findViewById(R.id.logout);
@@ -62,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 // 카카오 로그인 시도 (창이 뜬다.)
                 session.open(AuthType.KAKAO_LOGIN_ALL, MainActivity.this);
             }
+
             /*
             Intent intent = new Intent(getApplicationContext(), ResActivity.class);
             startActivity(intent);
@@ -93,8 +114,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 카카오 개발자 홈페이지에 등록할 해시키 구하기
-       //getHashKey();
 
+
+    }
+
+
+
+    public void firstInit() {
+        retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        service = retrofit.create(ApiService.class);
     }
 
 
@@ -175,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                                 UserAccount kakaoAccount = result.getKakaoAccount();
                                 //Intent intent = new Intent(getApplicationContext(), ResActivity.class);
                                 Log.i("KAKAO_API", "사용자 아이디: " + result.getId());
-                                userInfo.put("ID", result.getId());
+                                userInfo.accumulate("id", result.getId());
 
                                 if (kakaoAccount != null) {
 
@@ -190,13 +221,13 @@ public class MainActivity extends AppCompatActivity {
                                         // userInfo.put("profileImg", profile.getProfileImageUrl());
                                         Log.d("KAKAO_API", "onSuccess:getNickname " + profile.getNickname());
                                         //intent.putExtra("name", profile.getNickname());
-                                        userInfo.put("name", profile.getNickname());
+                                        userInfo.accumulate("name", profile.getNickname());
                                     }
                                     if (email != null) {
 
                                         Log.d("KAKAO_API", "onSuccess:email " + email);
                                         //intent.putExtra("email", kakaoAccount.getEmail());
-                                        userInfo.put("email", email);
+                                        userInfo.accumulate("email", email);
                                     } else if (kakaoAccount.emailNeedsAgreement() == OptionalBoolean.TRUE) {
                                         // 동의 요청 후 이메일 획득 가능
                                         // 단, 선택 동의로 설정되어 있다면 서비스 이용 시나리오 상에서 반드시 필요한 경우에만 요청해야 합니다.
@@ -229,11 +260,37 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                                 // for json test
-                                Log.d("Test: ID", String.valueOf(userInfo.get("ID")));
+                                Log.d("Test: json", ""+userInfo);
+                                Log.d("Test: ID", String.valueOf(userInfo.get("id")));
                                 Log.d("Test: name", String.valueOf(userInfo.get("name")));
                                 Log.d("Test: email", String.valueOf(userInfo.get("email")));
                                 //startActivity(intent);
                                 //finish();
+                                Call<ResponseBody> call_post = service.postFunc(userInfo.toString());
+                                call_post.enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if (response.isSuccessful()) {
+                                            try {
+                                                String result = response.body().string();
+                                                Log.d(TAG, "result = " + result);
+                                                //get_text.setText(result);
+                                                //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        } else {
+                                            Log.d(TAG, "error = " + String.valueOf(response.code()));
+                                            //Toast.makeText(getApplicationContext(), "error = " + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Log.d(TAG, "Fail");
+                                        //Toast.makeText(getApplicationContext(), "Response Fail", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             } catch (JSONException ex){
 
                             }
