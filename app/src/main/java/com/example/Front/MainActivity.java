@@ -243,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
              */
             // userInfo node js 로 보내기
+            
         }
     }
 }

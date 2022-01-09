@@ -35,7 +35,8 @@ public class ResInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        jsonParsing(getJsonString());
+        Log.d("TEST", getJsonString());
+        //jsonParsing(getJsonString());
         /*
         // test
         ResData resData = new ResData();
@@ -75,7 +76,7 @@ public class ResInfoFragment extends Fragment {
     {
         String json = "";
         try {
-            AssetManager am = requireContext().getAssets();
+            AssetManager am = getResources().getAssets();
             InputStream is = am.open("resList.json");
             Log.d("test!!!!!!", "test1");
             int fileSize = is.available();
