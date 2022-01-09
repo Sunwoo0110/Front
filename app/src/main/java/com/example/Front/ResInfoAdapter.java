@@ -14,12 +14,25 @@ import java.util.ArrayList;
 
 public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHolder> {
 
-    @NonNull
-    private ArrayList<ResData> mDataset;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        //public ImageView ResImgView;
+        public TextView ResNameView;
+        public TextView ResPlaceView;
+        public TextView ResTimeView;
+        public TextView ResLikeView;
 
-    public ResInfoAdapter(ArrayList<ResData> searchDataSet, Activity activity){
-        mDataset = searchDataSet;
+        public ViewHolder(View view) {
+            super(view);
+            //ResImgView = (ImageView) view.findViewById(R.id.res_img);
+            ResNameView = (TextView) view.findViewById(R.id.res_name);
+            ResPlaceView = (TextView) view.findViewById(R.id.res_place);
+            ResTimeView = (TextView) view.findViewById(R.id.res_time);
+            ResLikeView = (TextView) view.findViewById(R.id.res_like);
+        }
     }
+
+    @NonNull
+    private ArrayList<ResData> mDataset = new ArrayList<ResData>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,11 +51,11 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
         public TextView ResLikeView;
 
          */
-        holder.ResImgView.setImageResource(mDataset.get(position).img);
+        //holder.ResImgView.setImageResource(mDataset.get(position).img);
         holder.ResNameView.setText(mDataset.get(position).name);
         holder.ResPlaceView.setText(mDataset.get(position).place);
         holder.ResTimeView.setText(mDataset.get(position).time);
-        holder.ResLikeView.setText(mDataset.get(position).like);
+        holder.ResLikeView.setText(String.valueOf(mDataset.get(position).like));
         /*
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,26 +67,13 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
 
     }
 
+    public ResInfoAdapter(ArrayList<ResData> searchDataSet, Activity activity){
+        mDataset = searchDataSet;
+    }
+
+
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return (mDataset != null? mDataset.size() : 0);
     }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView ResImgView;
-        public TextView ResNameView;
-        public TextView ResPlaceView;
-        public TextView ResTimeView;
-        public TextView ResLikeView;
-
-        public ViewHolder(View view) {
-            super(view);
-            ResImgView = (ImageView) view.findViewById(R.id.res_img);
-            ResNameView = (TextView) view.findViewById(R.id.res_name);
-            ResPlaceView = (TextView) view.findViewById(R.id.res_place);
-            ResTimeView = (TextView) view.findViewById(R.id.res_time);
-            ResLikeView = (TextView) view.findViewById(R.id.res_like);
-        }
-    }
-
 }

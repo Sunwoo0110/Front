@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_main"
-        android:enabled="true"
-        android:title="@string/title_activity_main" />
-
-    <item
         android:id="@+id/navigation_res_info"
         android:enabled="true"
         android:title="@string/title_res_info" />

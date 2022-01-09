@@ -26,6 +26,10 @@ import com.kakao.usermgmt.response.model.UserAccount;
 import com.kakao.util.OptionalBoolean;
 import com.kakao.util.exception.KakaoException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -58,12 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 // 카카오 로그인 시도 (창이 뜬다.)
                 session.open(AuthType.KAKAO_LOGIN_ALL, MainActivity.this);
             }
-            /*
+
             Intent intent = new Intent(getApplicationContext(), ResActivity.class);
             startActivity(intent);
             finish();
-
-             */
 
        });
 
@@ -149,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 사용자 정보 요청
         public void requestMe() {
+            // 사용자 정보 JSON 형식으로 서버로 전달
+            JSONObject userInfo = new JSONObject();
             UserManagement.getInstance()
                     .me(new MeV2ResponseCallback() {
                         @Override
@@ -163,65 +167,82 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onSuccess(MeV2Response result) {
-                            String id = String.valueOf(result.getId());
-                            UserAccount kakaoAccount = result.getKakaoAccount();
-                            //Intent intent = new Intent(getApplicationContext(), ResActivity.class);
-                            Log.i("KAKAO_API", "사용자 아이디: " + result.getId());
+                            try {
+                                String id = String.valueOf(result.getId());
+                                UserAccount kakaoAccount = result.getKakaoAccount();
+                                //Intent intent = new Intent(getApplicationContext(), ResActivity.class);
+                                Log.i("KAKAO_API", "사용자 아이디: " + result.getId());
+                                userInfo.put("ID", result.getId());
 
-                            if (kakaoAccount != null) {
+                                if (kakaoAccount != null) {
 
-                                // 이메일
-                                String email = kakaoAccount.getEmail();
-                                Profile profile = kakaoAccount.getProfile();
-                                if (profile ==null){
-                                    Log.d("KAKAO_API", "onSuccess:profile null ");
-                                }else{
-                                    Log.d("KAKAO_API", "onSuccess:getProfileImageUrl "+profile.getProfileImageUrl());
-                                    //intent.putExtra("profileImg", profile.getProfileImageUrl());
-                                    Log.d("KAKAO_API", "onSuccess:getNickname "+profile.getNickname());
-                                    //intent.putExtra("name", profile.getNickname());
-                                }
-                                if (email != null) {
+                                    // 이메일
+                                    String email = kakaoAccount.getEmail();
+                                    Profile profile = kakaoAccount.getProfile();
+                                    if (profile == null) {
+                                        Log.d("KAKAO_API", "onSuccess:profile null ");
+                                    } else {
+                                        Log.d("KAKAO_API", "onSuccess:getProfileImageUrl " + profile.getProfileImageUrl());
+                                        //intent.putExtra("profileImg", profile.getProfileImageUrl());
+                                        // userInfo.put("profileImg", profile.getProfileImageUrl());
+                                        Log.d("KAKAO_API", "onSuccess:getNickname " + profile.getNickname());
+                                        //intent.putExtra("name", profile.getNickname());
+                                        userInfo.put("name", profile.getNickname());
+                                    }
+                                    if (email != null) {
 
-                                    Log.d("KAKAO_API", "onSuccess:email "+email);
-                                    //intent.putExtra("email", kakaoAccount.getEmail());
-                                } else if (kakaoAccount.emailNeedsAgreement() == OptionalBoolean.TRUE) {
-                                    // 동의 요청 후 이메일 획득 가능
-                                    // 단, 선택 동의로 설정되어 있다면 서비스 이용 시나리오 상에서 반드시 필요한 경우에만 요청해야 합니다.
-                                    Log.d("KAKAO_API", "onSuccess: 동의 요청 후 이메일 획득 가능");
+                                        Log.d("KAKAO_API", "onSuccess:email " + email);
+                                        //intent.putExtra("email", kakaoAccount.getEmail());
+                                        userInfo.put("email", email);
+                                    } else if (kakaoAccount.emailNeedsAgreement() == OptionalBoolean.TRUE) {
+                                        // 동의 요청 후 이메일 획득 가능
+                                        // 단, 선택 동의로 설정되어 있다면 서비스 이용 시나리오 상에서 반드시 필요한 경우에만 요청해야 합니다.
+                                        Log.d("KAKAO_API", "onSuccess: 동의 요청 후 이메일 획득 가능");
+                                    } else {
+                                        // 이메일 획득 불가
+                                        Log.d("KAKAO_API", "onSuccess: cannot get email");
+                                    }
+
+                                    // 프로필
+                                    Profile _profile = kakaoAccount.getProfile();
+
+                                    if (_profile != null) {
+
+                                        Log.d("KAKAO_API", "nickname: " + _profile.getNickname());
+                                        //intent.putExtra("name", _profile.getNickname());
+                                        Log.d("KAKAO_API", "profile image: " + _profile.getProfileImageUrl());
+                                        //intent.putExtra("profileImg", _profile.getProfileImageUrl());
+                                        Log.d("KAKAO_API", "thumbnail image: " + _profile.getThumbnailImageUrl());
+                                        //intent.putExtra("Thumnail", _profile.getThumbnailImageUrl());
+
+                                    } else if (kakaoAccount.profileNeedsAgreement() == OptionalBoolean.TRUE) {
+                                        // 동의 요청 후 프로필 정보 획득 가능
+
+                                    } else {
+                                        // 프로필 획득 불가
+                                    }
                                 } else {
-                                    // 이메일 획득 불가
-                                    Log.d("KAKAO_API", "onSuccess: cannot get email");
+                                    Log.i("KAKAO_API", "onSuccess: kakaoAccount null");
                                 }
 
-                                // 프로필
-                                Profile _profile = kakaoAccount.getProfile();
+                                // for json test
+                                Log.d("Test: ID", String.valueOf(userInfo.get("ID")));
+                                Log.d("Test: name", String.valueOf(userInfo.get("name")));
+                                Log.d("Test: email", String.valueOf(userInfo.get("email")));
+                                //startActivity(intent);
+                                //finish();
+                            } catch (JSONException ex){
 
-                                if (_profile != null) {
-
-                                    Log.d("KAKAO_API", "nickname: " + _profile.getNickname());
-                                    //intent.putExtra("name", _profile.getNickname());
-                                    Log.d("KAKAO_API", "profile image: " + _profile.getProfileImageUrl());
-                                    //intent.putExtra("profileImg", _profile.getProfileImageUrl());
-                                    Log.d("KAKAO_API", "thumbnail image: " + _profile.getThumbnailImageUrl());
-                                    //intent.putExtra("Thumnail", _profile.getThumbnailImageUrl());
-
-                                } else if (kakaoAccount.profileNeedsAgreement() == OptionalBoolean.TRUE) {
-                                    // 동의 요청 후 프로필 정보 획득 가능
-
-                                } else {
-                                    // 프로필 획득 불가
-                                }
-                            }else{
-                                Log.i("KAKAO_API", "onSuccess: kakaoAccount null");
                             }
-                            //startActivity(intent);
-                            //finish();
                         }
                     });
+            /*
             Intent intent = new Intent(getApplicationContext(), ResActivity.class);
             startActivity(intent);
             finish();
+
+             */
+            // userInfo node js 로 보내기
         }
     }
 }

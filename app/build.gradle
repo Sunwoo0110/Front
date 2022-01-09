@@ -48,4 +48,6 @@ dependencies {
 
     implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.30.0'
 
+    implementation 'com.google.code.gson:gson:2.8.9'
+
 }
