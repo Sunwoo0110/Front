@@ -62,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
                 // 카카오 로그인 시도 (창이 뜬다.)
                 session.open(AuthType.KAKAO_LOGIN_ALL, MainActivity.this);
             }
-
+            /*
             Intent intent = new Intent(getApplicationContext(), ResActivity.class);
             startActivity(intent);
             finish();
+
+             */
 
        });
 
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 카카오 개발자 홈페이지에 등록할 해시키 구하기
        //getHashKey();
+
     }
 
 
@@ -236,12 +239,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-            /*
-            Intent intent = new Intent(getApplicationContext(), ResActivity.class);
-            startActivity(intent);
-            finish();
 
-             */
             // userInfo node js 로 보내기
             
         }

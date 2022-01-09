@@ -35,9 +35,9 @@ public class ResInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.d("TEST", getJsonString());
+        //Log.d("TEST", getJsonString());
         //jsonParsing(getJsonString());
-        /*
+
         // test
         ResData resData = new ResData();
 
@@ -47,7 +47,6 @@ public class ResInfoFragment extends Fragment {
         resData.setLike(2);
         reResData.add(resData);
 
-         */
 
         View view = inflater.inflate(R.layout.fragment_res_info_list, container, false);
         reRecyclerView = (RecyclerView) view.findViewById(R.id.res_list);
