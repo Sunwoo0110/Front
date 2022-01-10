@@ -179,8 +179,8 @@ public class MainActivity extends AppCompatActivity {
         // 사용자 정보 요청
         public void requestMe() {
             // 사용자 정보 String 형식으로 서버로 전달
-            //JSONObject userInfo = new JSONObject();
-            String userInfo = "";
+            JSONObject userInfo = new JSONObject();
+            //String userInfo = "";
             UserManagement.getInstance()
                     .me(new MeV2ResponseCallback() {
                         @Override
@@ -200,8 +200,8 @@ public class MainActivity extends AppCompatActivity {
                                 UserAccount kakaoAccount = result.getKakaoAccount();
                                 //Intent intent = new Intent(getApplicationContext(), ResActivity.class);
                                 Log.i("KAKAO_API", "사용자 아이디: " + result.getId());
-                                //userInfo.accumulate("id", result.getId());
-                                userInfo.concat("<id : " + result.getId() + ">, ");
+                                userInfo.accumulate("id", result.getId());
+                                //userInfo.concat("<id : " + result.getId() + ">, ");
 
                                 if (kakaoAccount != null) {
 
@@ -216,15 +216,15 @@ public class MainActivity extends AppCompatActivity {
                                         // userInfo.put("profileImg", profile.getProfileImageUrl());
                                         Log.d("KAKAO_API", "onSuccess:getNickname " + profile.getNickname());
                                         //intent.putExtra("name", profile.getNickname());
-                                        //userInfo.accumulate("name", profile.getNickname());
-                                        userInfo.concat("<name : " + profile.getNickname() + ">, ");
+                                        userInfo.accumulate("name", profile.getNickname());
+                                        //userInfo.concat("<name : " + profile.getNickname() + ">, ");
                                     }
                                     if (email != null) {
 
                                         Log.d("KAKAO_API", "onSuccess:email " + email);
                                         //intent.putExtra("email", kakaoAccount.getEmail());
-                                        //userInfo.accumulate("email", email);
-                                        userInfo.concat("<email : " + email + ">");
+                                        userInfo.accumulate("email", email);
+                                        //userInfo.concat("<email : " + email + ">");
                                     } else if (kakaoAccount.emailNeedsAgreement() == OptionalBoolean.TRUE) {
                                         // 동의 요청 후 이메일 획득 가능
                                         // 단, 선택 동의로 설정되어 있다면 서비스 이용 시나리오 상에서 반드시 필요한 경우에만 요청해야 합니다.
@@ -257,16 +257,17 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                                 // for json test
-                                /*
+
                                 Log.d("Test: json", ""+userInfo);
                                 Log.d("Test: ID", String.valueOf(userInfo.get("id")));
                                 Log.d("Test: name", String.valueOf(userInfo.get("name")));
                                 Log.d("Test: email", String.valueOf(userInfo.get("email")));
 
-                                 */
+
                                 //startActivity(intent);
                                 //finish();
-                                Call<ResponseBody> call_post = service.postFunc(userInfo);
+                                Log.d(TAG, userInfo.toString());
+                                Call<ResponseBody> call_post = service.postFunc(userInfo.toString());
                                 call_post.enqueue(new Callback<ResponseBody>() {
                                     @Override
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
