@@ -103,9 +103,22 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             try {
+                                // server 에서 값 받기
                                 String result = response.body().string();
                                 Log.d(TAG, "result = " + result);
-                                //get_text.setText(result);
+
+                                // json ReviewFragment 로 보내기
+                                Bundle bundle = new Bundle();
+                                bundle.putString("S_json", result);
+
+                                ReviewFragment reviewFragment = new ReviewFragment();
+
+                                FragmentTransaction transaction = reviewFragment.getActivity().getSupportFragmentManager().beginTransaction();
+
+                                reviewFragment.setArguments(bundle);
+                                transaction.replace(R.id.nav_host_fragment_activity_res, reviewFragment);
+                                transaction.commit();
+
                                 //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -144,8 +157,11 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
 
 
                 // 다음 fragment 으로 이동
+                /*
                 Navigation.findNavController(view)
                         .navigate(R.id.action_navigation_res_info_to_navigation_review);
+
+                 */
             }
         });
 
