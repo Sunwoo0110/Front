@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +41,18 @@ public class ReviewFragment extends Fragment {
         //server 에서 받아서 revResData add 하기
 
         View view = inflater.inflate(R.layout.fragment_review, container, false);
+
+        // id/res_title 변수 변경
+        /*
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            TextView title = view.findViewById(R.id.res_title);
+            title.setText(bundle.getString("resName"));
+        }
+
+         */
+
+        //recyclerview 선언
         reRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
         reRecyclerView.setHasFixedSize(true);
         reLayoutManager = new LinearLayoutManager(getActivity());
@@ -48,8 +61,6 @@ public class ReviewFragment extends Fragment {
         revAdapter = new ReviewAdapter(revResData, getActivity());
         reRecyclerView.setAdapter(revAdapter);
         reRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
 
         Button goCmtBtn = (Button) view.findViewById(R.id.review_add);
         goCmtBtn.setOnClickListener(new View.OnClickListener(){

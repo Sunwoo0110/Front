@@ -1,6 +1,7 @@
 package com.example.Front;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -75,7 +77,7 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
-
+    //int position
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         //holder.ResImgView.setImageResource(mDataset.get(position).img);
@@ -92,10 +94,10 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
             public void onClick(View view) {
                 // click 시 필요한 동작 정의
 
-                // 다음 fragment 으로 가게이름 전송
+                // server 로 클릭된 가게 이름 전송
                 firstInit();
                 //mDataset.get(position).name
-                Call<ResponseBody> call_post = service.postFunc("utz");
+                Call<ResponseBody> call_post = service.postFunc((String) holder.ResNameView.getText());
                 call_post.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -120,6 +122,26 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
                         //Toast.makeText(getApplicationContext(), "Response Fail", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+                // 가게 이름 보여주기
+                //TextView title = view.findViewById(R.id.res_title);
+                //title.setText(holder.ResNameView.getText());
+
+                // ReviewFragment 으로 가게이름 전송
+                /*
+                Bundle bundle = new Bundle();
+                bundle.putString("resName", mDataset.get(holder.getAdapterPosition()).name);
+
+                ReviewFragment reviewFragment = new ReviewFragment();
+
+                FragmentTransaction transaction = reviewFragment.getActivity().getSupportFragmentManager().beginTransaction();
+
+                reviewFragment.setArguments(bundle);
+                transaction.replace(R.id.nav_host_fragment_activity_res, reviewFragment);
+                transaction.commit();
+
+                 */
+
 
                 // 다음 fragment 으로 이동
                 Navigation.findNavController(view)
