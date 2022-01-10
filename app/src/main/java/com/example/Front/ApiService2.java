@@ -11,12 +11,12 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface ApiService {
+public interface ApiService2 {
     @GET("/retrofit/get_id")
     Call<ResponseBody> getFunc(@Query("data") String data);
 
     @FormUrlEncoded
-    @POST("/retrofit/post_by_json_user")
+    @POST("/retrofit/post_by_json_resName")
     Call<ResponseBody> postFunc(@Field("data") String data);
 
     @FormUrlEncoded
