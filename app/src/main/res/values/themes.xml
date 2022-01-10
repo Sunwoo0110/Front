@@ -19,6 +19,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="review_star" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/Gainsboro</item>
+        <item name="colorControlActivated">@color/Gold</item>
+    </style>
+
     <style name="Theme.Kakaologin.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Kakaologin.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

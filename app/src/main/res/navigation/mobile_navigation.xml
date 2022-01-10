@@ -30,6 +30,19 @@
         <action
             android:id="@+id/action_navigation_review_to_navigation_res_info"
             app:destination="@id/navigation_res_info" />
+        <action
+            android:id="@+id/action_navigation_review_to_navigation_comment"
+            app:destination="@id/navigation_comment" />
+    </fragment>
+
+    <fragment
+        android:id="@id/navigation_comment"
+        android:name="com.example.Front.CommentFragment"
+        android:label="@string/title_comment"
+        tools:layout="@layout/fragment_comment">
+        <action
+            android:id="@+id/action_navigation_comment_to_navigation_review"
+            app:destination="@id/navigation_review" />
     </fragment>
 
 </navigation>

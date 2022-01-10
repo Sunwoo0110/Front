@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RatingBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,33 +28,28 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
-public class ReviewFragment extends Fragment {
-
-    private RecyclerView reRecyclerView;
-    private ReviewAdapter revAdapter;
-    private RecyclerView.LayoutManager reLayoutManager;
-    private ArrayList<ReviewData> revResData = new ArrayList<ReviewData>();
-
+public class CommentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_comment, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_review, container, false);
-        reRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
-        reRecyclerView.setHasFixedSize(true);
-        reLayoutManager = new LinearLayoutManager(getActivity());
-        reRecyclerView.setLayoutManager(reLayoutManager);
-        reRecyclerView.scrollToPosition(0);
-        revAdapter = new ReviewAdapter(revResData, getActivity());
-        reRecyclerView.setAdapter(revAdapter);
-        reRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        Button goCmtBtn = (Button) view.findViewById(R.id.review_add);
-        goCmtBtn.setOnClickListener(new View.OnClickListener(){
+        Button addReview = (Button) view.findViewById(R.id.comment_add);
+        EditText inputView = (EditText) view.findViewById(R.id.reviewInput);
+        RatingBar score = (RatingBar) view.findViewById(R.id.ratingBar);
+        addReview.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                // memo input 받기
+                String input = inputView.getText().toString();
+                // star input 받기
+                Float star = score.getRating();
+
+                
+
+                // 리뷰 리스트로 돌아가기
                 Navigation.findNavController(view)
-                        .navigate(R.id.action_navigation_review_to_navigation_comment);
+                        .navigate(R.id.action_navigation_comment_to_navigation_review);
             }
         });
         return view;
@@ -66,6 +63,4 @@ public class ReviewFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-}
+    }}

@@ -3,8 +3,11 @@ package com.example.Front;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +40,6 @@ public class ResInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //Log.d("TEST", getJsonString());
         jsonParsing(getJsonString());
 
         // test
@@ -49,7 +53,6 @@ public class ResInfoFragment extends Fragment {
         reResData.add(resData);
 
          */
-
 
         View view = inflater.inflate(R.layout.fragment_res_info_list, container, false);
         reRecyclerView = (RecyclerView) view.findViewById(R.id.res_list);
@@ -108,13 +111,15 @@ public class ResInfoFragment extends Fragment {
 
                 ResData resData = new ResData();
 
+                resData.setImg(resObject.getString("img"));
+                Log.d("img", resData.getImg());
                 resData.setName(resObject.getString("name"));
                 Log.d("name", resData.getName());
                 resData.setPlace(resObject.getString("place"));
                 Log.d("place", resData.getPlace());
                 resData.setTime(resObject.getString("time"));
                 Log.d("time", resData.getTime());
-                resData.setLike(resObject.getInt("like"));
+                resData.setScore((float) resObject.getDouble("score"));
 
                 reResData.add(resData);
             }

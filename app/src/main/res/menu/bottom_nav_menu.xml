@@ -11,4 +11,9 @@
         android:enabled="true"
         android:title="@string/title_review" />
 
+    <item
+        android:id="@+id/navigation_comment"
+        android:enabled="true"
+        android:title="@string/title_comment" />
+
 </menu>

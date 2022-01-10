@@ -6,6 +6,7 @@
     <string name="title_kakao_login">Login</string>
     <string name="title_res_info">맛집 리스트</string>
     <string name="title_review">리뷰 리스트</string>
+    <string name="title_comment">리뷰 작성</string>
     <string name="title_activity_res">ResActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <!-- Strings used for fragments for navigation -->

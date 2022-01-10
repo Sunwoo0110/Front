@@ -2,11 +2,15 @@ package com.example.Front;
 
 // resList.json 에는 이미지 안넣음 (추가 구현)
 public class ResData {
-    //public int img;
+    public String img;
     public String name;
     public String place;
     public String time;
-    public int like;
+    public Float score;
+
+    public String getImg() {
+        return img;
+    }
 
     public String getName() {
         return name;
@@ -20,6 +24,10 @@ public class ResData {
         return time;
     }
 
+    public Float getScore() {return score;}
+
+    public void setImg(String img) {this.img = img;}
+
     public void setName(String name) {
         this.name = name;
     }
@@ -32,8 +40,6 @@ public class ResData {
         this.time = time;
     }
 
-    public void setLike(int like) {
-        this.like = like;
-    }
+    public void setScore(float score) { this.score = score; }
 
 }
