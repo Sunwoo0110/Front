@@ -1,6 +1,7 @@
 package com.example.Front;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -34,7 +34,7 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
 
     Session session;
     private static final String TAG = "ResInfoAdatper";
-
+    private Activity mActivity;
     private final String URL = "http://172.10.18.160:80";
 
     private Retrofit retrofit;
@@ -113,12 +113,14 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
 
                                 ReviewFragment reviewFragment = new ReviewFragment();
 
-                                FragmentTransaction transaction = reviewFragment.getActivity().getSupportFragmentManager().beginTransaction();
-
                                 reviewFragment.setArguments(bundle);
-                                transaction.replace(R.id.nav_host_fragment_activity_res, reviewFragment);
-                                transaction.commit();
-
+                                Log.d("rwasdfsdagr", bundle.toString());
+                                mActivity.getFragmentManager()
+                                        .beginTransaction()
+                                        .add(reviewFragment, "ss")
+                                        .commit();
+                                      /*  .replace(R.id.nav_host_fragment_activity_res,  reviewFragment)
+                                        .commit();*/
                                 //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -157,11 +159,10 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
 
 
                 // 다음 fragment 으로 이동
-                /*
+/*
                 Navigation.findNavController(view)
                         .navigate(R.id.action_navigation_res_info_to_navigation_review);
-
-                 */
+*/
             }
         });
 
@@ -169,6 +170,7 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
 
     public ResInfoAdapter(ArrayList<ResData> searchDataSet, Activity activity){
         mDataset = searchDataSet;
+        mActivity = activity;
     }
 
 

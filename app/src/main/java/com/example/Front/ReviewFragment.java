@@ -2,9 +2,9 @@ package com.example.Front;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.app.Fragment;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,7 +47,9 @@ public class ReviewFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle != null){
             String S_json = bundle.getString("S_json");
+            Log.d("rwar", "asdfa");
         }
+        Log.d("rwar", "asdfaasdasfasf");
 
         //recyclerview 선언
         reRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
