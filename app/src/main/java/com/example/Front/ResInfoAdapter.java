@@ -119,7 +119,7 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
                                 mActivity.getFragmentManager()
                                         .beginTransaction()
                                         .add(reviewFragment, "ss")
-                                        //.replace(R.id.nav_host_fragment_activity_res, reviewFragment)
+                                        .replace(R.id.nav_host_fragment_activity_res, reviewFragment)
                                         .commit();
 
                                 //Navigation.findNavController(view)
