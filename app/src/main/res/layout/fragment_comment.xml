@@ -10,9 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40dp"
-        android:text="리뷰 작성하기"
-        android:layout_marginTop="20dp"
+        android:text="리뷰를 작성해주세요"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="20dp"
+        android:fontFamily="@font/g_bold"
         android:layout_gravity="center"/>
 
     <RatingBar
@@ -33,6 +34,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/border"
+        android:fontFamily="@font/g_medium"
         android:gravity="top"
         android:hint="100자 이내로 작성해주세요."
         android:maxLength="100"
@@ -44,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="저장"
+        android:fontFamily="@font/g_medium"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:backgroundTint="#FE9A2E" />

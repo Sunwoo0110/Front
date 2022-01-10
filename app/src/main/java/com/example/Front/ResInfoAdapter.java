@@ -61,10 +61,14 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
         holder.ResScoreView.setText(String.valueOf(mDataset.get(position).score));
 
         holder.ResImgView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 // click 시 필요한 동작 정의
+
+                // 다음 fragment 으로 가게이름 전송
+
+
+                // 다음 fragment 으로 이동
                 Navigation.findNavController(view)
                         .navigate(R.id.action_navigation_res_info_to_navigation_review);
             }

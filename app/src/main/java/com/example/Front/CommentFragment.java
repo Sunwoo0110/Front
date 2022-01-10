@@ -45,7 +45,9 @@ public class CommentFragment extends Fragment {
                 // star input 받기
                 Float star = score.getRating();
 
-                
+                // + server 로 보내야함
+                // json 에 사용자 id, 가게 정보, score, memo packing 해서 보내기
+
 
                 // 리뷰 리스트로 돌아가기
                 Navigation.findNavController(view)

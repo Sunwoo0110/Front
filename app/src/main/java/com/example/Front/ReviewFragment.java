@@ -37,6 +37,8 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //server 에서 받아서 revResData add 하기
+
         View view = inflater.inflate(R.layout.fragment_review, container, false);
         reRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
         reRecyclerView.setHasFixedSize(true);
@@ -46,6 +48,8 @@ public class ReviewFragment extends Fragment {
         revAdapter = new ReviewAdapter(revResData, getActivity());
         reRecyclerView.setAdapter(revAdapter);
         reRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
 
         Button goCmtBtn = (Button) view.findViewById(R.id.review_add);
         goCmtBtn.setOnClickListener(new View.OnClickListener(){
