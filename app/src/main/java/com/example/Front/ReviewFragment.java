@@ -33,6 +33,7 @@ public class ReviewFragment extends Fragment {
     private ReviewAdapter revAdapter;
     private RecyclerView.LayoutManager reLayoutManager;
     private ArrayList<ReviewData> revResData = new ArrayList<ReviewData>();
+    String res_name;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,8 +51,10 @@ public class ReviewFragment extends Fragment {
             Log.d("PrintBundle", S_json);
             // 받은 리뷰 정보 Parsing
             jsonParsing(S_json);
-
         }
+
+        TextView textview = (TextView) view.findViewById(R.id.res_title);
+        textview.setText(res_name);
 
         //recyclerview 선언
         reRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
@@ -88,11 +91,8 @@ public class ReviewFragment extends Fragment {
     private void jsonParsing(String json){
         try {
             JSONObject jsonObject = new JSONObject(json);
-
-            String res_name = jsonObject.getString("res_name");
-            // set res name
-            TextView view = (TextView) getView().findViewById(R.id.res_title);
-            view.setText(res_name);
+            Log.d("stesdga", json);
+            res_name = jsonObject.getString("res_name");
 
             JSONArray resArray = jsonObject.getJSONArray("resList");
 
@@ -113,6 +113,7 @@ public class ReviewFragment extends Fragment {
 
         } catch (JSONException e){
             e.printStackTrace();
+            Log.d("ssdf", json);
         }
     }
 

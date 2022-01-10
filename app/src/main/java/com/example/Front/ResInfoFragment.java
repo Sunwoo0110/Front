@@ -103,7 +103,7 @@ public class ResInfoFragment extends Fragment {
     private void jsonParsing(String json){
         try {
             JSONObject jsonObject = new JSONObject(json);
-
+            Log.d("asfsdfhaa", json);
             JSONArray resArray = jsonObject.getJSONArray("resList");
 
             for(int i=0; i<resArray.length(); ++i){
