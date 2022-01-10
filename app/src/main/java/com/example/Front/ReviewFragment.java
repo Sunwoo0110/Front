@@ -47,9 +47,11 @@ public class ReviewFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle != null){
             String S_json = bundle.getString("S_json");
-            Log.d("rwar", "asdfa");
+            Log.d("PrintBundle", S_json);
+            // 받은 리뷰 정보 Parsing
+            jsonParsing(S_json);
+
         }
-        Log.d("rwar", "asdfaasdasfasf");
 
         //recyclerview 선언
         reRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
@@ -80,6 +82,38 @@ public class ReviewFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    // json 파싱
+    private void jsonParsing(String json){
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+
+            String res_name = jsonObject.getString("res_name");
+            // set res name
+            TextView view = (TextView) getView().findViewById(R.id.res_title);
+            view.setText(res_name);
+
+            JSONArray resArray = jsonObject.getJSONArray("resList");
+
+            for(int i=0; i<resArray.length(); ++i){
+                JSONObject resObject = resArray.getJSONObject(i);
+
+                ReviewData revData = new ReviewData();
+
+                revData.setName(resObject.getString("name"));
+                Log.d("name", revData.getName());
+                revData.setRate((float) resObject.getDouble("rate"));
+                Log.d("rate", revData.getRate().toString());
+                revData.setReview(resObject.getString("review"));
+                Log.d("review", revData.getReview());
+
+                revResData.add(revData);
+            }
+
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
     }
 
 }

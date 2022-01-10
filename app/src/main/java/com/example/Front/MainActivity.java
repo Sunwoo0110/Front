@@ -108,10 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 카카오 개발자 홈페이지에 등록할 해시키 구하기
 
-
     }
-
-
 
     public void firstInit() {
         retrofit = new Retrofit.Builder()
@@ -120,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         service = retrofit.create(ApiService.class);
     }
-
 
     @Override
     protected void onDestroy() {

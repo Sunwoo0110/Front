@@ -46,9 +46,9 @@ public class ReviewAdapter extends RecyclerView.Adapter <ReviewAdapter.ViewHolde
 
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.ReviewRateView.setRating(revDataset.get(position).score);
-        holder.ReviewScoreView.setText(String.valueOf(revDataset.get(position).score));
-        holder.ReviewMemoView.setText(revDataset.get(position).memo);
+        holder.ReviewRateView.setRating(revDataset.get(position).rate);
+        holder.ReviewScoreView.setText(String.valueOf(revDataset.get(position).rate));
+        holder.ReviewMemoView.setText(revDataset.get(position).review);
         /*
         holder.ResNameView.setOnClickListener(new View.OnClickListener() {
             private Object ResInfoFragment;

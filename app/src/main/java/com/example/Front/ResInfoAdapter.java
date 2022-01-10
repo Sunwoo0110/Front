@@ -118,9 +118,11 @@ public class ResInfoAdapter extends RecyclerView.Adapter <ResInfoAdapter.ViewHol
                                 mActivity.getFragmentManager()
                                         .beginTransaction()
                                         .add(reviewFragment, "ss")
+                                        .replace(R.id.nav_host_fragment_activity_res,  reviewFragment)
                                         .commit();
-                                      /*  .replace(R.id.nav_host_fragment_activity_res,  reviewFragment)
-                                        .commit();*/
+
+                                Navigation.findNavController(view)
+                                        .navigate(R.id.action_navigation_res_info_to_navigation_review);
                                 //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                             } catch (IOException e) {
                                 e.printStackTrace();

@@ -2,17 +2,22 @@ package com.example.Front;
 
 public class ReviewData {
 
-    public Float score;
-    public String memo;
+    public String name;
+    public Float rate;
+    public String review;
 
-    public Float getScore() {
-        return score;
+    public String getName() { return name; }
+
+    public Float getRate() {
+        return rate;
     }
 
-    public String getMemo() { return memo; }
+    public String getReview() { return review; }
 
-    public void setScore(Float score) {this.score = score;}
+    public void setName(String name) { this.name = name; }
 
-    public void setMemo(String memo) {this.memo = memo;}
+    public void setRate(Float rate) {this.rate = rate;}
+
+    public void setReview(String review) {this.review = review;}
 
 }
