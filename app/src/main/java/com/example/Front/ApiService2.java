@@ -16,7 +16,7 @@ public interface ApiService2 {
     Call<ResponseBody> getFunc(@Query("data") String data);
 
     @FormUrlEncoded
-    @POST("/retrofit/post_by_json_resName")
+    @POST("/retrofit/post_by_resName")
     Call<ResponseBody> postFunc(@Field("data") String data);
 
     @FormUrlEncoded
