@@ -43,16 +43,15 @@ public class ReviewFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_review, container, false);
 
-        // id/res_title 변수 변경
-
-        Bundle bundle = getArguments();
-        if(bundle != null){
-            String S_json = bundle.getString("S_json");
+        Bundle getbundle = getArguments();
+        if(getbundle != null){
+            String S_json = getbundle.getString("S_json");
             Log.d("PrintBundle", S_json);
             // 받은 리뷰 정보 Parsing
             jsonParsing(S_json);
         }
 
+        // id/res_title 변수 변경
         TextView textview = (TextView) view.findViewById(R.id.res_title);
         textview.setText(res_name);
 

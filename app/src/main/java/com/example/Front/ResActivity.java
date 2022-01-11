@@ -29,16 +29,4 @@ public class ResActivity extends AppCompatActivity {
         commentFragment = new CommentFragment();
 
     }
-
-    public void onFragmentChange(int index){
-        if(index == 0 ){
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_res, resInfoFragment).commit();
-        } else if(index == 1){
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_res, reviewFragment).commit();
-        } else if(index == 2){
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_res, commentFragment).commit();
-        }
-    }
-
-
 }
