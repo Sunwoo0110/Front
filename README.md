@@ -19,6 +19,7 @@
 - **파일 구성**
   - MainActivity : Kakao SDK 를 활용하여 Kakao 계정으로 로그인 및 앱 실행
   - ResActivity : 3개의 fragment 를 연결 해주는 activity
+  
    1. ResInfoFragment : 근처 맛집들의 리스트를 recycler view 로 보여줌
    2. ReviewFragment : 선택된 맛집의 리뷰들을 recycler view 로 보여줌
    3. CommentFragment : 사용자가 선택된 맛집에 대한 별점과 리뷰를 작성함
