@@ -28,5 +28,10 @@ public class ResActivity extends AppCompatActivity {
         reviewFragment = new ReviewFragment();
         commentFragment = new CommentFragment();
 
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.resContainer, new ResInfoFragment())
+                .commit();
+
     }
 }
