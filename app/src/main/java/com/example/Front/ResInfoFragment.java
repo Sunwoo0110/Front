@@ -37,18 +37,6 @@ public class ResInfoFragment extends Fragment {
 
         jsonParsing(getJsonString());
 
-        // test
-        /*
-        ResData resData = new ResData();
-
-        resData.setName("카이마루");
-        resData.setPlace("카이스트");
-        resData.setTime("몰랑");
-        resData.setLike(2);
-        reResData.add(resData);
-
-         */
-
         View view = inflater.inflate(R.layout.fragment_res_info_list, container, false);
         reRecyclerView = (RecyclerView) view.findViewById(R.id.res_list);
         reRecyclerView.setHasFixedSize(true);

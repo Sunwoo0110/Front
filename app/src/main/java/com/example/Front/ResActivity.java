@@ -22,15 +22,15 @@ public class ResActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res);
 
-        Intent intent = getIntent();
-
         resInfoFragment = new ResInfoFragment();
         reviewFragment = new ReviewFragment();
         commentFragment = new CommentFragment();
 
+        Intent intent = getIntent();
+
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.resContainer, new ResInfoFragment())
+                .replace(R.id.resContainer, resInfoFragment)
                 .commit();
 
     }

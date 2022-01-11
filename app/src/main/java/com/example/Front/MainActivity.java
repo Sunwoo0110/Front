@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
     private ApiService service;
+    public static JSONObject userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,8 +176,8 @@ public class MainActivity extends AppCompatActivity {
         // 사용자 정보 요청
         public void requestMe() {
             // 사용자 정보 String 형식으로 서버로 전달
-            JSONObject userInfo = new JSONObject();
             //String userInfo = "";
+            userInfo = new JSONObject();
             UserManagement.getInstance()
                     .me(new MeV2ResponseCallback() {
                         @Override

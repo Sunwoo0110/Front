@@ -1,5 +1,6 @@
 package com.example.Front;
 
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -34,6 +35,7 @@ public class ReviewFragment extends Fragment {
     private RecyclerView.LayoutManager reLayoutManager;
     private ArrayList<ReviewData> revResData = new ArrayList<ReviewData>();
     String res_name;
+    private Activity mActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,11 +68,22 @@ public class ReviewFragment extends Fragment {
         reRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         Button goCmtBtn = (Button) view.findViewById(R.id.review_add);
+
+        CommentFragment commentFragment = new CommentFragment();
+
+        Bundle sendbundle = new Bundle();
+        sendbundle.putString("resName", res_name);
+
+        commentFragment.setArguments(sendbundle);
+
         goCmtBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Navigation.findNavController(view)
-                        .navigate(R.id.action_navigation_review_to_navigation_comment);
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(commentFragment, "sss")
+                        .replace(R.id.resContainer, commentFragment)
+                        .commit();
             }
         });
         return view;

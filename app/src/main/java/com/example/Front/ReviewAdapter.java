@@ -52,7 +52,6 @@ public class ReviewAdapter extends RecyclerView.Adapter <ReviewAdapter.ViewHolde
         /*
         holder.ResNameView.setOnClickListener(new View.OnClickListener() {
             private Object ResInfoFragment;
-
             @Override
             public void onClick(View view) {
                 // click 시 필요한 동작 정의
@@ -60,9 +59,7 @@ public class ReviewAdapter extends RecyclerView.Adapter <ReviewAdapter.ViewHolde
                         .navigate(R.id.action_navigation_res_info_to_navigation_review);
             }
         });
-
          */
-
     }
 
     public ReviewAdapter(ArrayList<ReviewData> searchDataSet, Activity activity){
