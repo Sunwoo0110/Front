@@ -40,7 +40,7 @@
 ## Simulation
 
 ### login
-![[login](https://user-images.githubusercontent.com/80109309/149048901-4d086f9c-9d17-4865-a6ee-a04ca4489d37.gif)
+![login](https://user-images.githubusercontent.com/80109309/149048901-4d086f9c-9d17-4865-a6ee-a04ca4489d37.gif)
 
 ### restaurants list
 ![list](https://user-images.githubusercontent.com/80109309/149049144-bacc02f6-16c8-4c77-9564-771118ac0e0a.gif)
