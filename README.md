@@ -40,13 +40,13 @@
 ## Simulation
 
 ### login
-![login](https://user-images.githubusercontent.com/80109309/149048901-4d086f9c-9d17-4865-a6ee-a04ca4489d37.gif)
+![login](https://user-images.githubusercontent.com/80109309/149049735-6ffb47e7-8b69-4c0c-afcb-601dc9f3097b.gif)
 
 ### restaurants list
-![list](https://user-images.githubusercontent.com/80109309/149049144-bacc02f6-16c8-4c77-9564-771118ac0e0a.gif)
+![list](https://user-images.githubusercontent.com/80109309/149049773-157fb48c-1f22-4edf-9f17-6d13eb56e2d1.gif)
 
 ### write review
-![write_review](https://user-images.githubusercontent.com/80109309/149049355-246d43dc-9a7c-406a-8b39-edc4222b6ac9.gif)
+![review](https://user-images.githubusercontent.com/80109309/149049855-1098ce70-cb59-41d3-a2fe-619ef54a3be8.gif)
 
 
 ## 추가 구현
