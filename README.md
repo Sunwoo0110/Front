@@ -48,6 +48,9 @@
 ### write review
 ![review](https://user-images.githubusercontent.com/80109309/149049855-1098ce70-cb59-41d3-a2fe-619ef54a3be8.gif)
 
+### updated list
+![updated](https://user-images.githubusercontent.com/80109309/149050271-19dbf2e4-f85d-4aa7-b706-05b5b20b1910.png)
+
 
 ## 추가 구현
 - 리뷰 작성 후 ReviewFragment 에 recycler view 가 나타나지 않는 문제
