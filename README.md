@@ -34,6 +34,7 @@
   - Java script
 
 - **파일 구성**
+  -in workspace5 folder
   -retrofit.js : client로부터 신호를 받으면 필요한 정보를 주는 파일
   -app.js : retrofit.js를 관리하는 파일
 
